@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Computer Networks (CS602) – MAKAUT 6th Sem Exam Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --border: #e9e3d6;
+    --line-soft: #f0ebdf;
+    --ink: #14171e;
+    --ink-soft: #3a4256;
+    --muted: #7c7a72;
+    --primary: #2f6f5e;
+    --primary-soft: rgba(47, 111, 94, 0.08);
+    --accent: #c97b3f;
+    --accent-soft: rgba(201, 123, 63, 0.1);
+    --danger: #b06367;
+    --danger-soft: rgba(176, 99, 103, 0.1);
+    --gold: #d4a14a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(47,111,94,0.05) 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(201,123,63,0.04) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .pill svg { width: 14px; height: 14px; }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  h1 em { font-style: italic; color: var(--primary); }
+  .lede {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 760px;
+    line-height: 1.5;
+  }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    margin-top: 36px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta svg { width: 14px; height: 14px; }
+
+  /* SECTION */
+  section { padding: 70px 0; border-bottom: 1px solid var(--border); }
+  .section-head { margin-bottom: 40px; }
+  .section-eyebrow {
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  h3 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .sub {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 720px;
+  }
+
+  /* SUBJECT CARD */
+  .subj-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  .subj-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+  .kv {
+    display: grid; grid-template-columns: 130px 1fr; gap: 10px 16px;
+    font-size: 14px;
+    padding: 12px 0;
+    border-top: 1px dashed var(--border);
+  }
+  .kv .k { color: var(--muted); font-weight: 500; }
+  .kv .v { color: var(--ink-soft); font-weight: 500; }
+  .kv .v code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .paper-structure h4 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); margin-bottom: 16px; font-weight: 600;
+  }
+  .ps-row {
+    display: grid; grid-template-columns: 24px 1fr auto; align-items: center;
+    gap: 12px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line-soft);
+    font-size: 14px;
+  }
+  .ps-row:last-child { border-bottom: 0; }
+  .ps-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 12px;
+  }
+  .ps-name { color: var(--ink); font-weight: 500; }
+  .ps-marks { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 13px; }
+
+  /* STATS */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 18px; margin-top: 32px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 20px;
+    text-align: left;
+  }
+  .stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12.5px; color: var(--muted);
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+
+  /* PYQ COMPARISON TABLE */
+  .pyq-table {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead {
+    background: linear-gradient(180deg, var(--line-soft), transparent);
+  }
+  th {
+    text-align: left; padding: 16px 20px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: 0; }
+  .year-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .y22 { background: rgba(47,111,94,0.1); color: var(--primary); }
+  .y23 { background: rgba(201,123,63,0.12); color: var(--accent); }
+  .y24 { background: rgba(176,99,103,0.12); color: var(--danger); }
+  .qref {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--muted);
+    margin-right: 6px;
+  }
+
+  /* HEATMAP */
+  .heatmap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+  }
+  .heat-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 70px;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .heat-row:last-child { border-bottom: 0; }
+  .heat-name { font-size: 14px; color: var(--ink); font-weight: 500; }
+  .heat-bar {
+    height: 18px; border-radius: 6px;
+    background: var(--line-soft);
+    overflow: hidden;
+    display: flex;
+  }
+  .heat-bar > span { display: block; height: 100%; }
+  .h-3 { background: linear-gradient(90deg, #2f6f5e, #4a8e7c); }
+  .h-2 { background: linear-gradient(90deg, #c97b3f, #d99a6a); }
+  .h-1 { background: linear-gradient(90deg, #b06367, #c98689); }
+  .heat-frac {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--ink-soft);
+    text-align: right; font-weight: 600;
+  }
+  .heat-legend {
+    display: flex; gap: 20px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 12.5px; color: var(--muted);
+  }
+  .heat-legend .lg { display: inline-flex; align-items: center; gap: 8px; }
+  .heat-legend .sw { width: 14px; height: 14px; border-radius: 3px; }
+
+  /* BIG LIST */
+  .topic-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+  }
+  .topic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    transition: all 0.2s;
+  }
+  .topic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  }
+  .topic-rank {
+    display: inline-block;
+    font-family: 'DM Serif Display', serif;
+    color: var(--primary);
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .topic-name {
+    font-size: 16px; font-weight: 600; color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .topic-where {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.5;
+  }
+  .topic-where b { color: var(--accent); font-weight: 600; }
+
+  /* PREDICTION */
+  .pred {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 32px;
+    margin-bottom: 22px;
+  }
+  .pred-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 16px;
+  }
+  .pred-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .pred-icon svg { width: 22px; height: 22px; }
+  .pred-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); }
+  .pred-prob {
+    margin-left: auto;
+    font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .p-high { background: var(--primary-soft); color: var(--primary); }
+  .p-med  { background: var(--accent-soft); color: var(--accent); }
+  .pred-q {
+    font-size: 15px; color: var(--ink-soft);
+    line-height: 1.55; margin-bottom: 12px;
+  }
+  .pred-q b { color: var(--ink); }
+  .pred-tip {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13.5px; color: var(--ink-soft);
+  }
+  .pred-tip b { color: var(--accent); }
+
+  /* CHAPTER LIST */
+  .ch-list { display: grid; gap: 14px; }
+  .ch {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .ch-head {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .ch-num {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+  }
+  .ch-name {
+    font-size: 16px; font-weight: 600; color: var(--ink);
+    flex: 1;
+  }
+  .ch-weight {
+    font-size: 12.5px; color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .ch-toggle {
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+  .ch.open .ch-toggle { transform: rotate(180deg); }
+  .ch-body {
+    display: none;
+    padding: 0 24px 22px 76px;
+    font-size: 14px; color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .ch.open .ch-body { display: block; }
+  .ch-body ul { list-style: none; }
+  .ch-body li {
+    padding: 6px 0;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .ch-body li::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--primary); margin-top: 8px; flex-shrink: 0;
+  }
+  .ch-body b { color: var(--ink); font-weight: 600; }
+
+  /* STUDY PLAN */
+  .plan {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .day {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .day-tag {
+    display: inline-block;
+    font-size: 11.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .day-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .day ul { list-style: none; }
+  .day li {
+    font-size: 14px; color: var(--ink-soft);
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .day li::before {
+    content: ""; position: absolute; left: 0; top: 13px;
+    width: 8px; height: 8px;
+    border: 2px solid var(--primary);
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+
+  /* TIPS */
+  .tip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .tip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .tip-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .tip-h {
+    font-size: 15px; font-weight: 600; color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .tip-b { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+  /* SUMMARY */
+  .summary {
+    background: linear-gradient(135deg, #1a3a32 0%, #2f6f5e 100%);
+    color: white;
+    border-radius: 22px;
+    padding: 50px 48px;
+    margin: 40px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .summary::before {
+    content: ""; position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .summary h2 { color: white; }
+  .summary .sub { color: rgba(255,255,255,0.7); }
+  .summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    margin-top: 32px;
+  }
+  .summary-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .summary-item h4 {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .summary-item p {
+    color: white;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 800px) {
+    h1 { font-size: 36px; }
+    h2 { font-size: 28px; }
+    .subj-card, .topic-grid, .plan, .summary-grid, .tip-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .ch-body { padding-left: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Exam Strategy Report
+    </span>
+    <h1>Computer Networks <em>— CS602</em><br/>6th Sem, MAKAUT</h1>
+    <p class="lede">
+      A complete analysis of your 3 years of PYQs and the WBUT/MAKAUT organizer.
+      Built from real questions asked in 2022-23, 2023-24 and 2024-25 — the patterns
+      here show exactly what to study for the upcoming semester exam.
+    </p>
+    <div class="meta">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Paper Code: EC602 / PCC-CS602 / PCCCS602</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 3 Hours • 70 Marks</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> UPID: 006596</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-val">3</div>
+        <div class="stat-label">PYQ Papers Analyzed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">11+</div>
+        <div class="stat-label">Q per paper (avg)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">~25</div>
+        <div class="stat-label">Unique Topics Mapped</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">5</div>
+        <div class="stat-label">Chapters in Syllabus</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUBJECT -->
+  <section>
+    <div class="section-head">
+      <div class="section-eyebrow">01 — Paper Overview</div>
+      <h2>What is the paper actually about?</h2>
+      <p class="sub">Before diving into the analysis, here's the structure of the paper and how marks are distributed — this is identical across all 3 years.</p>
+    </div>
+
+    <div class="subj-card">
+      <div>
+        <div class="subj-title">Computer Networks</div>
+        <p style="color: var(--ink-soft); font-size: 14.5px; margin-bottom: 16px;">
+          B.Tech 6th Semester, MAKAUT. Standard 70-mark theory paper with 3 hours.
+          The paper code 006596 stays constant across the 3 years you shared.
+        </p>
+        <div class="kv">
+          <span class="k">Paper Code</span><span class="v"><code>EC602 / PCC-CS602</code></span>
+          <span class="k">Full Marks</span><span class="v">70</span>
+          <span class="k">Time</span><span class="v">3 Hours</span>
+          <span class="k">UPID</span><span class="v"><code>006596</code></span>
+          <span class="k">Group A</span><span class="v">10 VSA × 1 mark = 10 (ans any 10 of 12)</span>
+          <span class="k">Group B</span><span class="v">3 SA × 5 marks = 15 (answer any 3 of 5)</span>
+          <span class="k">Group C</span><span class="v">3 LA × 15 marks = 45 (answer any 3 of 5)</span>
+        </div>
+      </div>
+      <div class="paper-structure">
+        <h4>Question Paper Pattern</h4>
+        <div class="ps-row">
+          <span class="ps-num">A</span>
+          <span class="ps-name">Very Short Answer (VSA)</span>
+          <span class="ps-marks">10 × 1 = 10</span>
+        </div>
+        <div class="ps-row">
+          <span class="ps-num">B</span>
+          <span class="ps-name">Short Answer (SA)</span>
+          <span class="ps-marks">3 × 5 = 15</span>
+        </div>
+        <div class="ps-row">
+          <span class="ps-num">C</span>
+          <span class="ps-name">Long Answer (LA)</span>
+          <span class="ps-marks">3 × 15 = 45</span>
+        </div>
+        <div class="ps-row" style="border: 0; padding-top: 14px;">
+          <span class="ps-num" style="background: var(--accent-soft); color: var(--accent);">★</span>
+          <span class="ps-name" style="font-size: 13px; color: var(--muted);">Total = 70 marks • Pick best options to maximise score</span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PYQ COMPARISON -->
+  <section>
+    <div class="section-head">
+      <div class="section-eyebrow">02 — PYQ Comparison</div>
+      <h2>Same paper, 3 years side-by-side</h2>
+      <p class="sub">All three papers are Computer Networks (006596). The structure stays identical, but the *questions asked* rotate. Look at the right column — many topics reappear in different years.</p>
+    </div>
+
+    <div class="pyq-table">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 110px;">Year</th>
+            <th style="width: 100px;">Paper No.</th>
+            <th>Highlights — what was asked</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="year-tag y22">2022-23</span></td>
+            <td style="color: var(--muted);">I124</td>
+            <td>
+              <span class="qref">VSA</span> Telnet, Protocol definition, Layer-2 switch = bridge, Loopback IP, QoS categories, Selective repeat window, SMTP, Token bucket is advanced form of Leaky bucket.<br/>
+              <span class="qref">SA</span> Physical &amp; Data Link layer functions • CSMA/CD vs CSMA/CA • Repeater/Router/Gateway • Firewall • Bit stuffing.<br/>
+              <span class="qref">LA</span> Twisted pair &amp; Optical fibre • Selective repeat &amp; Stop-and-Wait • VRC • Token bucket • TCP header • Static vs Dynamic routing • RIP • FTP • Bluetooth.
+            </td>
+          </tr>
+          <tr>
+            <td><span class="year-tag y23">2023-24</span></td>
+            <td style="color: var(--muted);">I019</td>
+            <td>
+              <span class="qref">VSA</span> DNS, FDM multiplexing, Hamming distance, Autonomous systems, TCP sequence number, FTP modes, Synchronous TDM slots, Bit stuffing, IPv4 bits = 32, Token bucket for bursts, PGP, Firewall at network boundary.<br/>
+              <span class="qref">SA</span> FTP working • Session layer functions • Piggybacking • Classless address 12.2.2.76/27 first address • UDP checksum reliability.<br/>
+              <span class="qref">LA</span> MAC sublayer • Pure &amp; Slotted ALOHA + vulnerable time • Go-Back-N • Private IP &amp; DHCP state diagram • Three-way TCP handshake • Leaky &amp; Token bucket combined • Packet filter firewall • Symmetric key encryption • Two-node instability in DVR • Packet visiting NL/DLL through 2 routers.
+            </td>
+          </tr>
+          <tr>
+            <td><span class="year-tag y24">2024-25</span></td>
+            <td style="color: var(--muted);">I018</td>
+            <td>
+              <span class="qref">VSA</span> Data rate, Intradomain routing, TCP for SMTP, VPN, Mesh links n(n-1)/2, Pure ALOHA efficiency 18.4%, Class D for multicasting, Piggybacking, DNS, Hamming for single-bit error, ARP, Host-to-host layer = Transport.<br/>
+              <span class="qref">SA</span> Circuit vs Packet switching • Mesh topology • Independent vs Cumulative ACK + Go-Back-N window=1 • CRC with example • Two transport services + segment + congestion.<br/>
+              <span class="qref">LA</span> Bit stuffing with example • Hamming code 111001101→110001101 (detect+correct) • MAC sublayer • Distance Vector Routing with example • Count-to-infinity • Transport layer functions • Leaky bucket • Open-loop congestion techniques • Short notes on DNS/FTP/Firewall/Telnet • ISP 190.100.0.0/16 sub-block design • CIDR 131.23.151.76 routing • Subnetting &amp; Supernetting.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- HEATMAP -->
+  <section>
+    <div class="section-head">
+      <div class="section-eyebrow">03 — Topic Frequency Heatmap</div>
+      <h2>How many times did each topic appear?</h2>
+      <p class="sub">Based on direct mentions in the 3 PYQs. Topics in the green band are "almost-guaranteed" — they will almost certainly appear in some form in your exam too.</p>
+    </div>
+
+    <div class="heatmap">
+      <div class="heat-row">
+        <span class="heat-name">DNS — Domain Name System</span>
+        <div class="heat-bar"><span class="h-3" style="width: 100%"></span></div>
+        <span class="heat-frac">3/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">FTP — File Transfer Protocol</span>
+        <div class="heat-bar"><span class="h-3" style="width: 100%"></span></div>
+        <span class="heat-frac">3/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Firewall</span>
+        <div class="heat-bar"><span class="h-3" style="width: 100%"></span></div>
+        <span class="heat-frac">3/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Leaky Bucket / Token Bucket</span>
+        <div class="heat-bar"><span class="h-3" style="width: 100%"></span></div>
+        <span class="heat-frac">3/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Bit Stuffing</span>
+        <div class="heat-bar"><span class="h-2" style="width: 66%"></span></div>
+        <span class="heat-frac">2/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">ALOHA (Pure / Slotted)</span>
+        <div class="heat-bar"><span class="h-2" style="width: 66%"></span></div>
+        <span class="heat-frac">2/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Distance Vector Routing</span>
+        <div class="heat-bar"><span class="h-2" style="width: 66%"></span></div>
+        <span class="heat-frac">2/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">TCP (header / 3-way handshake)</span>
+        <div class="heat-bar"><span class="h-2" style="width: 66%"></span></div>
+        <span class="heat-frac">2/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Subnetting / Classless Addressing</span>
+        <div class="heat-bar"><span class="h-2" style="width: 66%"></span></div>
+        <span class="heat-frac">2/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Piggybacking</span>
+        <div class="heat-bar"><span class="h-2" style="width: 66%"></span></div>
+        <span class="heat-frac">2/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Routing Algorithms (RIP, OSPF, etc.)</span>
+        <div class="heat-bar"><span class="h-2" style="width: 66%"></span></div>
+        <span class="heat-frac">2/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Hamming Code</span>
+        <div class="heat-bar"><span class="h-1" style="width: 33%"></span></div>
+        <span class="heat-frac">1/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">CRC (Cyclic Redundancy Check)</span>
+        <div class="heat-bar"><span class="h-1" style="width: 33%"></span></div>
+        <span class="heat-frac">1/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">CSMA/CD vs CSMA/CA</span>
+        <div class="heat-bar"><span class="h-1" style="width: 33%"></span></div>
+        <span class="heat-frac">1/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Stop-and-Wait / Selective Repeat ARQ</span>
+        <div class="heat-bar"><span class="h-1" style="width: 33%"></span></div>
+        <span class="heat-frac">1/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Twisted Pair / Optical Fiber</span>
+        <div class="heat-bar"><span class="h-1" style="width: 33%"></span></div>
+        <span class="heat-frac">1/3</span>
+      </div>
+      <div class="heat-row">
+        <span class="heat-name">Bluetooth / WiFi Architecture</span>
+        <div class="heat-bar"><span class="h-1" style="width: 33%"></span></div>
+        <span class="heat-frac">1/3</span>
+      </div>
+
+      <div class="heat-legend">
+        <span class="lg"><span class="sw" style="background: linear-gradient(90deg, #2f6f5e, #4a8e7c);"></span> 3/3 — Must Prepare</span>
+        <span class="lg"><span class="sw" style="background: linear-gradient(90deg, #c97b3f, #d99a6a);"></span> 2/3 — High Priority</span>
+        <span class="lg"><span class="sw" style="background: linear-gradient(90deg, #b06367, #c98689);"></span> 1/3 — Important Backup</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP REPEATED -->
+  <section>
+    <div class="section-head">
+      <div class="section-eyebrow">04 — Most Repeated Questions</div>
+      <h2>Same idea, different wording — year after year</h2>
+      <p class="sub">These are the questions MAKAUT keeps coming back to. If you nail these, you cover ~60-65% of predictable paper content.</p>
+    </div>
+
+    <div class="topic-grid">
+      <div class="topic-card">
+        <div class="topic-rank">01</div>
+        <div class="topic-name">Leaky Bucket vs Token Bucket</div>
+        <div class="topic-where">
+          Seen in <b>2022-23 (Q9)</b>, <b>2023-24 (Q9c)</b>, <b>2024-25 (Q9b)</b>. In 2023-24 the examiner even asked the *combined* form. Make a clean comparison table + diagram.
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">02</div>
+        <div class="topic-name">DNS — Architecture / Working</div>
+        <div class="topic-where">
+          Appears in <b>all 3 years</b> either as VSA (definition) or short note. Almost always in the form of "short note on DNS" inside Group C.
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">03</div>
+        <div class="topic-name">FTP — Working / Modes</div>
+        <div class="topic-where">
+          <b>2022-23</b> (FTP to browse), <b>2023-24</b> (Q2 how FTP works), <b>2024-25</b> (short notes). Know control connection (port 21) and data connection (port 20).
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">04</div>
+        <div class="topic-name">Firewall — Types / Working</div>
+        <div class="topic-where">
+          <b>2022-23</b> (how firewall protects data), <b>2023-24</b> (packet-filter firewall), <b>2024-25</b> (short note). Cover packet-filter, stateful, application-level.
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">05</div>
+        <div class="topic-name">Bit Stuffing</div>
+        <div class="topic-where">
+          VSA in <b>2022-23</b> and <b>2023-24</b>; full LA in <b>2024-25</b>. Pattern: stuff a 0 after 5 consecutive 1s. Always draw the example.
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">06</div>
+        <div class="topic-name">ALOHA &amp; Slotted ALOHA</div>
+        <div class="topic-where">
+          <b>2023-24</b> (Q7b — full derivations + vulnerable time), <b>2024-25</b> (VSA max efficiency 18.4%). Know vulnerable time = 2× frame time (pure), 1× frame time (slotted).
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">07</div>
+        <div class="topic-name">Distance Vector Routing</div>
+        <div class="topic-where">
+          <b>2023-24</b> (two-node instability problem), <b>2024-25</b> (full DVR with example + count-to-infinity). Always comes with diagram + Bellman-Ford idea.
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">08</div>
+        <div class="topic-name">TCP — Header / 3-Way Handshake</div>
+        <div class="topic-where">
+          <b>2022-23</b> (TCP header full), <b>2023-24</b> (3-way handshake diagram). Memorise the 20-byte header fields + the SYN → SYN-ACK → ACK flow.
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">09</div>
+        <div class="topic-name">Subnetting / Classless Addressing</div>
+        <div class="topic-where">
+          <b>2023-24</b> (12.2.2.76/27 first address), <b>2024-25</b> (205.16.37.39/28 + 190.100.0.0/16 + 131.23.151.76 CIDR). Numericals are guaranteed — practice at least 5.
+        </div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-rank">10</div>
+        <div class="topic-name">Piggybacking</div>
+        <div class="topic-where">
+          <b>2023-24</b> (full 5-mark question), <b>2024-25</b> (VSA — fill in blank). Definition + advantages + timing diagram — very high probability.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREDICTIONS -->
+  <section>
+    <div class="section-head">
+      <div class="section-eyebrow">05 — Predicted Questions</div>
+      <h2>What may come in your exam</h2>
+      <p class="sub">These are not random — each one is based on the rotation pattern of the last 3 years. Probability ratings are my best estimate based on the organizer's coverage and PYQ rotation.</p>
+    </div>
+
+    <div class="pred">
+      <div class="pred-head">
+        <span class="pred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/></svg></span>
+        <span class="pred-title">Group C — Long Answer (likely, 15 marks)</span>
+        <span class="pred-prob p-high">VERY HIGH</span>
+      </div>
+      <p class="pred-q">
+        <b>Distance Vector Routing with example</b> + count-to-infinity problem. (Direct hit 2024-25, indirect in 2023-24.)
+      </p>
+      <div class="pred-tip"><b>How to answer:</b> Draw a 3-4 node graph, show distance vectors updating step-by-step using Bellman-Ford. Then explain count-to-infinity with a 3-node example where a link drops. Mention split horizon + poison reverse as solutions. <b>5-mark subpart:</b> show the routing table at each iteration.</div>
+    </div>
+
+    <div class="pred">
+      <div class="pred-head">
+        <span class="pred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+        <span class="pred-title">Group C — Long Answer (likely, 15 marks)</span>
+        <span class="pred-prob p-high">VERY HIGH</span>
+      </div>
+      <p class="pred-q">
+        <b>Subnetting problem</b> — likely a multi-part numerical: ISP address block design (like 2024-25 Q11a) or first/last address calculation (like 2023-24 Q5, 2022-23 Q8c).
+      </p>
+      <div class="pred-tip"><b>How to answer:</b> Show the binary of the last octet, apply the prefix mask, then find block size. For multi-group ISP: arrange from largest to smallest group. <b>Tip:</b> Practice 190.100.0.0/16 style problems 2-3 times — they're formulaic once you get it.</div>
+    </div>
+
+    <div class="pred">
+      <div class="pred-head">
+        <span class="pred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span class="pred-title">Group C — Long Answer (very likely, 15 marks)</span>
+        <span class="pred-prob p-high">VERY HIGH</span>
+      </div>
+      <p class="pred-q">
+        <b>Short notes on 3-4 application-layer protocols</b> — DNS, FTP, SMTP, Telnet, HTTP. (Direct hit 2024-25 Q10.)
+      </p>
+      <div class="pred-tip"><b>How to answer:</b> For each protocol — port number, key function, one diagram. DNS: resolver + root/TLD/auth servers. FTP: control (21) + data (20) channels. SMTP: push protocol on port 25. Telnet: virtual terminal on port 23.</div>
+    </div>
+
+    <div class="pred">
+      <div class="pred-head">
+        <span class="pred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span>
+        <span class="pred-title">Group B — Short Answer (high, 5 marks)</span>
+        <span class="pred-prob p-high">HIGH</span>
+      </div>
+      <p class="pred-q">
+        <b>Compare Circuit Switching vs Packet Switching</b> — 2024-25 asked this directly. 2023-24 was a related switching question. Due for re-ask.
+      </p>
+      <div class="pred-tip"><b>How to answer:</b> Make a 5-row table — definition, resource allocation, delay, suitability, example. Mention datagram vs virtual circuit packet switching as the two flavours.</div>
+    </div>
+
+    <div class="pred">
+      <div class="pred-head">
+        <span class="pred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></span>
+        <span class="pred-title">Group B — Short Answer (high, 5 marks)</span>
+        <span class="pred-prob p-high">HIGH</span>
+      </div>
+      <p class="pred-q">
+        <b>Piggybacking</b> — full 5-mark question with advantages, OR piggybacking as a VSA fill-in. Seen in 2023-24 and 2024-25.
+      </p>
+      <div class="pred-tip"><b>How to answer:</b> Definition (sender delays ACK to attach it to next outgoing data), 3 advantages (better bandwidth use, fewer frames, control overhead down), 1 disadvantage (delayed ACK if no data).</div>
+    </div>
+
+    <div class="pred">
+      <div class="pred-head">
+        <span class="pred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <span class="pred-title">Group C — Long Answer (medium, 15 marks)</span>
+        <span class="pred-prob p-med">MEDIUM</span>
+      </div>
+      <p class="pred-q">
+        <b>Leaky Bucket + Token Bucket</b> combined question with diagrams. 2023-24 Q9c was exactly this. Examiner loves rephrasing the same question — fresh wording, same core.
+      </p>
+      <div class="pred-tip"><b>How to answer:</b> Two diagrams (bucket with hole at bottom for leaky; bucket with tokens added at constant rate for token), a 4-column comparison, and a 1-paragraph "how combining both gives best QoS" close.</div>
+    </div>
+
+    <div class="pred">
+      <div class="pred-head">
+        <span class="pred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+        <span class="pred-title">Group C — Long Answer (medium, 15 marks)</span>
+        <span class="pred-prob p-med">MEDIUM</span>
+      </div>
+      <p class="pred-q">
+        <b>TCP header + 3-way handshake</b> as one 15-mark question. Or split as 7-mark header (with diagram) + 8-mark handshake.
+      </p>
+      <div class="pred-tip"><b>How to answer:</b> Draw the 20-byte header with all fields labelled (Source/Dest Port, Seq, Ack, Offset, Reserved, Flags URG/ACK/PSH/RST/SYN/FIN, Window, Checksum, Urgent, Options, Padding). For handshake: 3 time-stamped packets showing client→server SYN, server→client SYN+ACK, client→server ACK.</div>
+    </div>
+
+    <div class="pred">
+      <div class="pred-head">
+        <span class="pred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+        <span class="pred-title">Group A — VSA (almost certain, 1 mark each)</span>
+        <span class="pred-prob p-high">GUARANTEED</span>
+      </div>
+      <p class="pred-q">
+        <b>10 VSA fillers</b> — DNS definition, port number of a known protocol, MAC address type, ARQ window size formula, classification by IP class (A/B/C/D/E), function of a layer.
+      </p>
+      <div class="pred-tip"><b>Memorise:</b> Port numbers (20, 21, 23, 25, 53, 80, 110), IPv4 class ranges (A:1-126, B:128-191, C:192-223, D:224-239, E:240-255), loopback (127.0.0.1), MAC size (48 bit), IPv4 size (32 bit).</div>
+    </div>
+  </section>
+
+  <!-- CHAPTER LIST -->
+  <section>
+    <div class="section-head">
+      <div class="section-eyebrow">06 — Chapter-Wise Roadmap</div>
+      <h2>What to study, in what order</h2>
+      <p class="sub">Based on the organizer's 8-chapter structure, weighted by how MAKAUT's exam actually distributes marks. Click each chapter to expand the must-study topics.</p>
+    </div>
+
+    <div class="ch-list">
+      <div class="ch open">
+        <div class="ch-head">
+          <span class="ch-num">1</span>
+          <span class="ch-name">Overview of Data Communication &amp; Networking</span>
+          <span class="ch-weight">~8-10 marks</span>
+          <span class="ch-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="ch-body">
+          <ul>
+            <li><b>OSI 7-layer model</b> — names, functions, PDU at each layer (bit/frame/packet/segment/data)</li>
+            <li><b>TCP/IP 4-layer model</b> and comparison with OSI</li>
+            <li><b>Network topologies</b> — Mesh, Star, Bus, Ring, Tree, Hybrid (with diagrams)</li>
+            <li><b>Transmission modes</b> — Simplex, Half-duplex, Full-duplex</li>
+            <li><b>Multiplexing</b> — FDM, TDM, WDM (basic idea)</li>
+            <li><b>Bandwidth vs Throughput</b> definitions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ch">
+        <div class="ch-head">
+          <span class="ch-num">2</span>
+          <span class="ch-name">Physical Layer &amp; Data Link Layer</span>
+          <span class="ch-weight">~12-15 marks</span>
+          <span class="ch-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="ch-body">
+          <ul>
+            <li><b>Guided media</b> — Twisted Pair, Coaxial, Optical Fiber (advantages, disadvantages, comparison)</li>
+            <li><b>Line coding</b> — NRZ-L, NRZ-I, Manchester, Differential Manchester (with diagrams)</li>
+            <li><b>Transmission impairments</b> — Attenuation, Distortion, Noise</li>
+            <li><b>Data Link Layer functions</b> — framing, error control, flow control, access control</li>
+            <li><b>Error detection &amp; correction</b> — VRC/LRC, CRC (with example), Hamming code (with example)</li>
+            <li><b>Bit stuffing</b> — algorithm + worked example (5 consecutive 1s rule)</li>
+            <li><b>Repeater, Bridge, Router, Gateway, Hub, Switch</b> — layer &amp; function</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ch">
+        <div class="ch-head">
+          <span class="ch-num">3</span>
+          <span class="ch-name">Medium Access Sub Layer (MAC)</span>
+          <span class="ch-weight">~12-15 marks</span>
+          <span class="ch-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="ch-body">
+          <ul>
+            <li><b>Random access</b> — ALOHA (pure &amp; slotted), CSMA, CSMA/CD, CSMA/CA — efficiency, vulnerable time, throughput formulas</li>
+            <li><b>Controlled access</b> — Reservation, Polling, Token Passing</li>
+            <li><b>Channelization</b> — FDMA, TDMA, CDMA (concept only)</li>
+            <li><b>Ethernet</b> — frame format, MAC addressing, 48-bit address</li>
+            <li><b>MAC sublayer functions</b> — addressing, channel access, collision resolution</li>
+            <li><b>IEEE 802.x standards</b> (basic awareness)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ch">
+        <div class="ch-head">
+          <span class="ch-num">4</span>
+          <span class="ch-name">Network Layer</span>
+          <span class="ch-weight">~20-22 marks (HEAVIEST)</span>
+          <span class="ch-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="ch-body">
+          <ul>
+            <li><b>IPv4 addressing</b> — classful (A/B/C/D/E), classless (CIDR with /n notation)</li>
+            <li><b>Subnetting</b> — finding network address, first/last host, broadcast — practice 5+ numericals</li>
+            <li><b>Subnetting design</b> — VLSM (Variable Length Subnet Masking) for ISP-style problems</li>
+            <li><b>Supernetting / CIDR</b> — combining blocks</li>
+            <li><b>ARP, RARP, ICMP, DHCP</b> — protocol functions</li>
+            <li><b>Routing algorithms</b> — Distance Vector (Bellman-Ford), Link State (Dijkstra)</li>
+            <li><b>Routing protocols</b> — RIP, OSPF, BGP (basics)</li>
+            <li><b>Count-to-infinity</b> + Split Horizon + Poison Reverse (solutions)</li>
+            <li><b>Two-node instability problem</b> in DVR (2023-24 asked this!)</li>
+            <li><b>IPv6</b> — header format, why needed (awareness only)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ch">
+        <div class="ch-head">
+          <span class="ch-num">5</span>
+          <span class="ch-name">Transport Layer</span>
+          <span class="ch-weight">~15-18 marks</span>
+          <span class="ch-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="ch-body">
+          <ul>
+            <li><b>UDP vs TCP</b> — comparison, header format, when to use which</li>
+            <li><b>TCP header</b> — all 20-byte fields (very important — full marks question)</li>
+            <li><b>3-way handshake</b> — SYN → SYN+ACK → ACK (with diagram)</li>
+            <li><b>Congestion control</b> — Leaky bucket, Token bucket (definitive topic)</li>
+            <li><b>Open-loop vs Closed-loop congestion control</b> techniques</li>
+            <li><b>ARQ protocols</b> — Stop-and-Wait, Go-Back-N, Selective Repeat (with diagrams)</li>
+            <li><b>Piggybacking</b> — definition + advantages + timing diagram</li>
+            <li><b>Port numbers</b> — well-known, registered, dynamic ranges</li>
+            <li><b>Socket</b> — IP + port pair concept</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ch">
+        <div class="ch-head">
+          <span class="ch-num">6</span>
+          <span class="ch-name">Application Layer &amp; Modern Topics</span>
+          <span class="ch-weight">~8-10 marks</span>
+          <span class="ch-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="ch-body">
+          <ul>
+            <li><b>DNS</b> — namespace, resolver, root/TLD/auth servers, iterative vs recursive query</li>
+            <li><b>FTP</b> — control channel (21), data channel (20), active vs passive mode</li>
+            <li><b>SMTP, POP3, IMAP</b> — email flow</li>
+            <li><b>HTTP / WWW</b> — request-response model</li>
+            <li><b>Telnet</b> — virtual terminal (port 23)</li>
+            <li><b>Network security basics</b> — Firewall (packet-filter, stateful, application), PGP, VPN</li>
+            <li><b>Symmetric vs Asymmetric encryption</b> (with block diagram)</li>
+            <li><b>Bluetooth architecture</b> — piconet, scatternet, protocol stack (awareness)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDY PLAN -->
+  <section>
+    <div class="section-head">
+      <div class="section-eyebrow">07 — 5-Day Battle Plan</div>
+      <h2>How to use the next 5 days effectively</h2>
+      <p class="sub">Assuming you have 5-6 days before the exam. If you have more, spread each day across two. If less, focus on the High Priority items only.</p>
+    </div>
+
+    <div class="plan">
+      <div class="day">
+        <span class="day-tag">Day 1</span>
+        <div class="day-title">Foundations + Physical/Datalink</div>
+        <ul>
+          <li>OSI &amp; TCP/IP models — draw both side by side, memorise layer names &amp; functions</li>
+          <li>Network topologies — draw all 5 with pros/cons</li>
+          <li>Twisted Pair, Coaxial, Optical Fiber — comparison table</li>
+          <li>Line coding schemes (NRZ-L, NRZ-I, Manchester) — diagram for one signal like 01001110</li>
+          <li>Data Link layer functions + Bit Stuffing (solve one example by hand)</li>
+        </ul>
+      </div>
+
+      <div class="day">
+        <span class="day-tag">Day 2</span>
+        <div class="day-title">Error Control + MAC + ARQ</div>
+        <ul>
+          <li>CRC — solve 2 numericals with generator polynomial</li>
+          <li>Hamming code — solve 1 (just like 2024-25 Q7b)</li>
+          <li>ALOHA / Slotted ALOHA — derivations, vulnerable time, max efficiency (18.4% / 36.8%)</li>
+          <li>CSMA/CD vs CSMA/CA — table comparison</li>
+          <li>Stop-and-Wait, Go-Back-N, Selective Repeat — diagram for each</li>
+        </ul>
+      </div>
+
+      <div class="day">
+        <span class="day-tag">Day 3</span>
+        <div class="day-title">Network Layer (heaviest chapter)</div>
+        <ul>
+          <li>IPv4 classful addressing + private IP ranges</li>
+          <li>Subnetting — solve 4-5 numericals: first/last address, block size, broadcast</li>
+          <li>CIDR &amp; Supernetting — 2 numericals</li>
+          <li>Distance Vector Routing — draw a 4-node graph, walk through 3 iterations of Bellman-Ford</li>
+          <li>Count-to-infinity + Split Horizon + Poison Reverse (3-mark question, very high prob)</li>
+        </ul>
+      </div>
+
+      <div class="day">
+        <span class="day-tag">Day 4</span>
+        <div class="day-title">Transport Layer + Security</div>
+        <ul>
+          <li>UDP vs TCP — table + when to use</li>
+          <li>TCP Header — draw full 20-byte header with all 10+ fields labelled</li>
+          <li>3-way handshake — diagram with 3 timed packets + sequence numbers</li>
+          <li>Leaky Bucket &amp; Token Bucket — draw both diagrams, comparison table, 1-paragraph "combined" answer</li>
+          <li>Firewall — packet filter, stateful, application-level gateway</li>
+          <li>Encryption basics — symmetric vs asymmetric</li>
+        </ul>
+      </div>
+
+      <div class="day">
+        <span class="day-tag">Day 5</span>
+        <div class="day-title">Application Layer + VSA Drill</div>
+        <ul>
+          <li>Short notes on 4 protocols: DNS, FTP, SMTP, Telnet — port numbers, function, 1-line example</li>
+          <li>Piggybacking — definition + 3 advantages + 1-line diagram</li>
+          <li>Bluetooth, VPN, PGP — 2-3 lines each</li>
+          <li>VSA revision: rewrite all 30+ VSA answers from the 3 PYQs from memory</li>
+          <li>Numerical revision: solve 3 random subnetting problems from PYQs</li>
+          <li>Sleep well, eat well. This is the most underrated exam tip.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAM TIPS -->
+  <section>
+    <div class="section-head">
+      <div class="section-eyebrow">08 — Exam Hall Tactics</div>
+      <h2>6 things that will save you marks</h2>
+      <p class="sub">The paper is designed to be passed. These tips come from how MAKAUT actually grades — they reward structure and diagrams.</p>
+    </div>
+
+    <div class="tip-grid">
+      <div class="tip">
+        <div class="tip-num">01</div>
+        <div class="tip-h">Always draw diagrams</div>
+        <div class="tip-b">For every protocol (3-way handshake, DVR, ALOHA, Token bucket) draw the diagram. Half the marks for many questions are for "neat labelled diagram".</div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">02</div>
+        <div class="tip-h">Use comparison tables</div>
+        <div class="tip-b">For "compare X and Y" questions, a 4-5 column table gets you more marks than 3 paragraphs. Examiners scan tables — they see all points at once.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">03</div>
+        <div class="tip-h">Number your steps in numericals</div>
+        <div class="tip-b">Subnetting, CRC, Hamming — show every step. Step 1: convert to binary. Step 2: apply mask. Don't skip. Even if the final answer is wrong, you get partial marks.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">04</div>
+        <div class="tip-h">Skip VSA fillers you don't know</div>
+        <div class="tip-b">Group A is 1 mark each, you pick 10 of 12. Don't waste 5 minutes on a VSA — move on, come back later. Time is your enemy in 3-hour paper.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">05</div>
+        <div class="tip-h">Pick best 3 of 5 in each group</div>
+        <div class="tip-b">You don't have to answer the first 3. Skim all 5 questions in Group B and C, then pick the 3 you know best. Many students answer the easiest 3, not the first 3.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-num">06</div>
+        <div class="tip-h">Read 2023-24 Q9c carefully</div>
+        <div class="tip-b">It's a Leaky+Token combined question — if the same question (or close variation) appears, you'll be ready. Examiner reuses frameworks; they rarely invent new question types.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section style="border-bottom: 0; padding-bottom: 0;">
+    <div class="summary">
+      <h2>Quick Summary — the bottom line</h2>
+      <p class="sub">If you read nothing else, read this. These are the highest-yield points for the next 3-4 hours of your study.</p>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <h4>Top 5 Topics (must do)</h4>
+          <p>1. Leaky &amp; Token Bucket  2. Distance Vector Routing  3. TCP Header + 3-way Handshake  4. Subnetting numericals  5. Short notes on DNS/FTP/Firewall/Telnet</p>
+        </div>
+        <div class="summary-item">
+          <h4>Where the marks hide</h4>
+          <p>Group C (45 marks) decides your grade. Group A (10 marks) is for confidence + buffer. Don't spend 2 hours on VSA — that's a common mistake.</p>
+        </div>
+        <div class="summary-item">
+          <h4>Easy 30 marks you should not lose</h4>
+          <p>Group A (10) + 2 of Group B (10) are almost free if you revise the organizer once. The other 10 from Group B is moderate difficulty. That leaves 30 marks for the "hard" Long Answer questions — but you only need 3 of 5.</p>
+        </div>
+        <div class="summary-item">
+          <h4>Last word of advice</h4>
+          <p>Don't try to learn new things in the last 24 hours. Re-revise the things you already half-know. That's where marks come from. Sleep 7-8 hours the night before. All the best.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Generated by R!5H4V_V!5HU · 6th Sem MAKAUT · Paper Code 006596 · Computer Networks (PCC-CS602) · PYQ window: 2022-2025 </p>
+  </footer>
+
+</div>
+
+<script>
+  // Chapter accordion
+  document.querySelectorAll('.ch-head').forEach(h => {
+    h.addEventListener('click', () => {
+      h.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
